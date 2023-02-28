@@ -5,10 +5,12 @@ import streamlit as st
 
 st.set_page_config(page_title="Sales View",
                    page_icon=":bar_chart:", layout="wide")
+@st.cache
+def get_data():
+    df = pd.read_excel("./SampleData.xlsx", "SalesOrders")
+    return df
 
-df = pd.read_excel("./SampleData.xlsx", "SalesOrders")
-
-
+df = get_data()
 st.sidebar.header("Filters")
 
 region = st.sidebar.multiselect(
