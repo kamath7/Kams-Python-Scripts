@@ -56,3 +56,5 @@ sales_by_product = (
 product_sales_graph = px.bar(sales_by_product, x="Total", y = sales_by_product.index, orientation="h", title ="<b>Sales by Product</b>", color_discrete_sequence=["#008388"] * len (sales_by_product), template="plotly_white")
 # product_sales_graph = px.bar(sales_by_product, x="Total", y=sales_by_product, orientation="h", title="<b>Sales by Product</b>")
 st.plotly_chart(product_sales_graph)
+
+#next to-do - figure out on how flask can serve this
