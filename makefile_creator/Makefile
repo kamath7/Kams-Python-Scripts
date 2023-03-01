@@ -1,5 +1,5 @@
 run:
-	python mypackage/main.py
+	python sample_pkg/main.py
 
 install:
 	pip install -r requirements.txt
