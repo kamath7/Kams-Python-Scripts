@@ -24,9 +24,11 @@ soup = BeautifulSoup(html_content, 'html.parser')
 
 tables = soup.find_all('table', class_='fevent')
 matches = []
+good_matches = []
 
 matches_portugal = []
 matches_england = []
+good_teams = ["Italy", "Germany", "England", "Portugal", "Spain", "Netherlands", "France", "Croatia"]
 
 # Iterate through each table of fixtures
 for table in tables:
@@ -47,6 +49,9 @@ for table in tables:
         matches_england.append({
             'Match': match_details
         })
+    if home_team in good_teams and away_team in good_teams:
+        good_match_details = f"{home_team} v {away_team}"
+        good_matches.append(good_match_details)
 
 
 df_portugal_matches = pd.DataFrame(matches_portugal)
@@ -55,4 +60,9 @@ df_england_matches = pd.DataFrame(matches_england)
 
 df_matches = pd.DataFrame(matches)
 
-print(df_matches)
+df_good_matches = pd.DataFrame(good_matches)
+
+df_portugal_matches.to_csv("portugal_matches.csv",index=False)
+df_england_matches.to_csv("england_matches.csv",index=False)
+df_good_matches.to_csv("good_matches.csv",index=False)
+df_matches.to_csv("all_matches.csv",index=False)
