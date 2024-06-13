@@ -23,7 +23,7 @@ html_content = response.text
 soup = BeautifulSoup(html_content, 'html.parser')
 
 tables = soup.find_all('table', class_='fevent')
-
+matches = []
 
 matches_portugal = []
 matches_england = []
@@ -33,6 +33,8 @@ for table in tables:
     home_team = table.find('th', class_='fhome').find('span', itemprop='name').text.strip()
     away_team = table.find('th', class_='faway').find('span', itemprop='name').text.strip()
     match_details = f"{home_team} v {away_team}"
+
+    matches.append(match_details)
     
     # Check if the match involves Portugal
     if 'Portugal' in match_details:
@@ -50,3 +52,7 @@ for table in tables:
 df_portugal_matches = pd.DataFrame(matches_portugal)
 
 df_england_matches = pd.DataFrame(matches_england)
+
+df_matches = pd.DataFrame(matches)
+
+print(df_matches)
