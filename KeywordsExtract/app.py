@@ -28,6 +28,14 @@ def extract_keywords(text):
     return keywords
 
 
+def print_everything(keywords): #not really necessary. i was just stupid while writing this
+    service = keywords["service"]
+    region = keywords["region"]
+    error = keywords["error"]
 
+    if service and region and error:
+        return f"You entered {service}, {region}, {error} "
+    else:
+        return "I could not find anything"
 
 
